@@ -3,6 +3,8 @@ import cors from "cors";
 import http from "http";
 import { Server } from "socket.io";
 import dotenv from "dotenv";
+import videoRoutes from "./routes/video";
+
 dotenv.config();
 
 const app = express();
@@ -10,6 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => res.send("Telehealth backend is running ✅"));
+
+app.use("/api/video", videoRoutes);
 
 // HTTP + Socket.io setup
 const server = http.createServer(app);
